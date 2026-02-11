@@ -11,9 +11,7 @@ export default async function HomePage() {
   
 
   return (
-    <Container>
-       
-      <Header />
+   
       <Suspense fallback={<SpinLoader/>}>
 
       <PostFeatured />
@@ -24,14 +22,7 @@ export default async function HomePage() {
 
       
      
-     <footer className={clsx(
-        'text-center',
-         'mt-10',
-         'py-8',
-        'text-gray-500')}>
-          Feito com Next.js
-      </footer>
-    </Container>
+    
   )
 }
 
