@@ -1,10 +1,14 @@
-import { PostHeading } from "../PostHeading/page";
 import { PostCoverImage } from "../PostCoverImage/page";
+import PostSummary from "../PostSummary/page";
+import { findAllPublicPosts } from "@/lib/post/queries";
 
       
-      export default function PostFeatured() {
-        const slug = 'qualquer';
-        const postLink = `/post/${slug}`;
+      export default async function PostFeatured() {
+        const posts = await findAllPublicPosts();
+        const post = posts[0];
+
+        
+        const postLink = `/post/${post.slug}`;
           
 
   return (
@@ -17,20 +21,21 @@ import { PostCoverImage } from "../PostCoverImage/page";
           className: ''
         }} 
         imageProps={{
-          src: '/images/bryen_3.png',
+          src: post.coverImageUrl,
           width: 1200,
           height: 720,
-          alt: 'Capa do post',
+          alt: post.title,
           priority: true,
         }}
         />
          
-        <div>
-          <time className='text-slate-600 block text-sm/tight'                
-           dateTime='2024-01-01'>Janeiro de 2024</time> 
-        <PostHeading as='h1' url={postLink}>Lorem ipsum dolor sit amet consectetur</PostHeading>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam ipsa quisquam, earum nihil accusantium voluptate tenetur error consequatur in iusto ut incidunt asperiores eos quis inventore quibusdam dolorum sed laborum.</p>
-        </div>
+         <PostSummary
+          title= {post.title}
+          excerpt= {post.excerpt}  
+          createdAt= {post.createdAt} 
+          postHeading='h1' 
+          postLink={postLink} 
+           />   
         </section>
         );
       }
