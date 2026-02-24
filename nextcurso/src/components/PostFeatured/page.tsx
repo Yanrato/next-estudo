@@ -7,7 +7,7 @@ import { findAllPublicPostsCached } from "@/lib/post/queries";
         const post = posts[0];
 
         
-        const postLink = `/post/${post.slug}`;
+        const postLink = `/posts/${post.slug}`;
           
 
   return (
